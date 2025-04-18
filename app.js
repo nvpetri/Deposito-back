@@ -1,28 +1,25 @@
-// Importando as dependências
+// src/app.js
 const express = require('express');
-const cors = require('cors');
 const dotenv = require('dotenv');
+const cors = require('cors');
+const produtoRoutes = require('./routes/produtoRoutes');
+const vendasRoutes = require('./routes/vendasRoutes');
 
-// Carregando variáveis de ambiente
+// Configuração do dotenv
 dotenv.config();
 
-// Criando a instância do app
 const app = express();
 
-// Configurando o middleware
-app.use(express.json()); // Para ler JSON no corpo das requisições
-app.use(cors()); // Habilita CORS (Cross-Origin Resource Sharing)
+// Middlewares
+app.use(express.json());  // Para aceitar JSON no corpo da requisição
+app.use(cors());          // Permite requisições de outros domínios
 
-// Importando as rotas
-const produtoRoutes = require('./routes/produtoRoutes');
+// Rotas
+app.use('/produtos', produtoRoutes);
+app.use('/vendas', vendasRoutes);
 
-// Usando as rotas
-app.use('/api/produtos', produtoRoutes);
-
-// Definindo a porta do servidor
-const PORT = process.env.PORT || 5000;
-
-// Iniciando o servidor
+// Porta para o servidor
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`Servidor rodando na porta ${PORT}`);
+    console.log(`Server is running on port ${PORT}`);
 });
