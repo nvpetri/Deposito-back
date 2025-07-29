@@ -2,8 +2,8 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
-const produtoRoutes = require('./routes/produtoRoutes');
-const vendasRoutes = require('./routes/vendasRoutes');
+const produtoRoutes = require('./routes/produtoRoutes.js');
+const vendasRoutes = require('./routes/vendaRoutes.js');
 
 // Configuração do dotenv
 dotenv.config();
